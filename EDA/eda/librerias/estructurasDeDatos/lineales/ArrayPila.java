@@ -61,7 +61,12 @@ public class ArrayPila<E> implements Pila<E> {
     public String toString() { 
         StringBuilder res = new StringBuilder();
         res.append("["); 
-        
-        return res.toString(); 
+        if(tope == -1) return "[]";
+        for(int i = tope; i > -1; i--){
+            res.append(i);
+            res.append(", ");
+        }
+        res.append("]");
+        return res.toString();
     }
 }
