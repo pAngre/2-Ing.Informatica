@@ -1,0 +1,63 @@
+
+padre(X,Y).
+madre(X,Y).
+
+antepasado(X,Y) :- padre(X,Y).
+antepasado(X,Y) :- madre(X,Y).
+antepasado(X,Y) :- padre(X,Z),antepasado(Z,Y).
+anetpasado(X,Y) :- madre(X,Z),antepasado(Z,Y).
+
+
+--SUSTITUCIONES--
+
+0 = {X/1, Y/f(Z), Z/f(2)}
+@ = {V/X, W/f(X)}
+
+@0 = {V/1, W/f(1), Y/f(Z), Z/f(2)}
+
+1. {V/1, W/f(1)}
+2. {V/1, W/f(1), Y/f(Z), Z/f(2)}
+3. Eliminar enlaces triviales, (X/X, Y/Y ...), NO HAY	
+   {V/1, W/f(1), Y/f(Z), Z/f(2)}
+
+--UNIFICACION--
+
+Una variable unifica con todo
+
+-Listas
+	[a,b] unifica con [X|R] usando {X/a, R/[b]}
+	[a] unifica con [X|R] usando {X/a, R[]}
+	[a|X] unifia con [Y,b,c] usando {Y/a, X/[b,c]}
+	[a] y [X,Y|R] no unifican
+	[] y [X] no unifican
+
+-MGU, Unificacion mas General, Sustitucion mas General
+	Unificar t1 y t2
+		Si t1 es una variable:  - mgu = {X/t2}
+								- Si t1 == t2, mgu = {}
+								- Si t2 no es una vaiable y X aparece en t2, mgu = null
+
+	Ejemplo: mgu de p([X,c],X) y p([f(Y)|R],f(a))
+
+		mismo formato: p([X|[c]],X) y p([f(Y)|R],f(a))
+
+		1er arg. [X|[c]] unifica con [f(Y)|R], Si {X/f(Y), R/[c]}
+			p([f(Y)|[c]], f(Y)) y p([f(Y)|[c]], f(a))
+
+		2ndo arg. f(Y) unifica con f(a), Si {Y/a}
+			p([f(a)|[c]], f(a)) y p([f(a)|[c]], f(a)) y {X/f(a), R/[c]}
+
+		el MGU es {X/f(a), R/[c]} U {Y/a} = {X/f(a), R/[c], Y/a}
+
+
+	MGU de:
+	-p(f(X,b),Z) y p(f(a,Y),g(c))
+		f(X,b) unifica con f(a,Y) con {X/a,Y/b}
+	-p(f(a,b),Z) y p(f(a,b),g(c))
+		Z unifica con g(c) con {Z/g(c)}
+	-p(f(a,b),g(c)) y p(f(a,b),g(c))
+	mgu seria {X/a,Y/b} U {Z/g(c)} = {X/a,Y/b,Z/g(c)}
+
+	-p([a,X],Y) y p([H|R],b)
+	
+	-p(f(X),b,X) y p(f(a),Y,b)
