@@ -30,7 +30,7 @@ public interface ListaConPIPlus<E> extends ListaConPI<E> {
     /** concatena una Lista Con PI con otra **/
     void concatenar(ListaConPI<E> otra);
 
-    /** invierte in-situ una Lista a partir de su PI **/
+    /** invierte una Lista **/
     void invertir();
     
     /** coloca en PI en e, si no lo encuentra el PI se pone al final**/

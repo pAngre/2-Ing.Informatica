@@ -20,6 +20,7 @@ comment6.target=void\ concatenar(librerias.estructurasDeDatos.modelos.ListaConPI
 comment6.text=une\ una\ nueva\ lista\ a\ esta\ lista*
 comment7.params=
 comment7.target=void\ invertir()
+comment7.text=invierte\ una\ lista*
 comment8.params=e
 comment8.target=void\ buscar(java.lang.Object)
 comment8.text=coloca\ el\ PI\ en\ e,\ si\ no\ lo\ encuentra\ el\ PI\ se\ pone\ al\ final*

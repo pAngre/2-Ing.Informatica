@@ -71,8 +71,15 @@ public class LEGListaConPIPlus<E> extends LEGListaConPI<E> implements ListaConPI
     public void concatenar(ListaConPI<E> otra){
         
     }
-    
+    /**invierte una lista**/
     public void invertir(){
+        LEGListaConPI<E> l = new LEGListaConPI();
+        for(int i = 0; i < this.talla - 1; i++){
+            this.inicio();
+            l.inicio();
+            l.insertar(this.recuperar());
+            this.eliminar();
+        }
         
     }
     /** coloca el PI en e, si no lo encuentra el PI se pone al final**/
