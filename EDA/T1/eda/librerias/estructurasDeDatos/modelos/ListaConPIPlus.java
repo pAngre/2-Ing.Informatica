@@ -34,7 +34,7 @@ public interface ListaConPIPlus<E> extends ListaConPI<E> {
     void invertir();
     
     /** coloca en PI en e, si no lo encuentra el PI se pone al final**/
-    void buscar();
+    void buscar(E e);
     
     /**devuelve los elementos en forma de lista**/
     String toString();
