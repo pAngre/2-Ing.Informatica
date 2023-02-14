@@ -10,19 +10,19 @@ public interface ListaConPIPlus<E> extends ListaConPI<E> {
     /** elimina la primera aparicion del Elemento e en una Lista Con PI 
      *  y devuelve true, o devuelve false si e no esta en la Lista
      */
-    boolean eliminar(E e);
+    boolean eliminarPrimero(E e) throws ElementoNoEncontrado;
     
     /** si el Elemento e esta en una Lista Con PI elimina su ultima 
      *  aparicion y la devuelve como resultado; sino lo advierte 
      *  lanzando la Excepcion ElementoNoEncontrado 
      */
-    E eliminarUltimo(E e) throws ElementoNoEncontrado;
+    boolean eliminarUltimo(E e) throws ElementoNoEncontrado;
     
     /** si el Elemento e esta en una Lista Con PI elimina todas sus  
      *  apariciones en ella; sino lo advierte lanzando la Excepcion 
      *  ElementoNoEncontrado 
      */
-    void eliminarTodos(E e) throws ElementoNoEncontrado;
+    boolean eliminarTodos(E e) throws ElementoNoEncontrado;
     
     /** elimina todos los Elementos de una Lista Con PI **/
     void vaciar();
@@ -31,5 +31,11 @@ public interface ListaConPIPlus<E> extends ListaConPI<E> {
     void concatenar(ListaConPI<E> otra);
 
     /** invierte in-situ una Lista a partir de su PI **/
-    void invertirDesdePI();
+    void invertir();
+    
+    /** coloca en PI en e, si no lo encuentra el PI se pone al final**/
+    void buscar();
+    
+    /**devuelve los elementos en forma de lista**/
+    String toString();
 }

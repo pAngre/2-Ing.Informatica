@@ -10,11 +10,16 @@ public class LEGPila<E> implements Pila<E> {
     /** crea una Pila vacia **/
     public LEGPila() {
         /*COMPLETAR*/
+        tope.dato = null;
+        talla = 0;
     }
       
     /** inserta el Elemento e en una Pila, o lo situa en su tope **/
     public void apilar(E e) {
         /*COMPLETAR*/
+        tope.siguiente = tope;
+        tope.dato = e;
+        talla++;
     }
       
     /** SII !esVacia(): 
@@ -22,7 +27,10 @@ public class LEGPila<E> implements Pila<E> {
      */
     public E desapilar() {
         /*COMPLETAR Y CORREGIR*/
-        return null;
+        E res = tope.dato;
+        tope = tope.siguiente;
+        talla--;
+        return res;
     }
       
     /** SII !esVacia(): 
@@ -30,13 +38,13 @@ public class LEGPila<E> implements Pila<E> {
      */
     public E tope() {
         /*CORREGIR*/
-        return null;
+        return tope.dato;
     }
       
     /** comprueba si una Pila esta vacia **/
     public boolean esVacia() {
         /*CORREGIR*/
-        return false;
+        return tope.dato == null;
     }
       
     /** obtiene un String con los Elementos de una Pila en orden LIFO, 
@@ -48,8 +56,13 @@ public class LEGPila<E> implements Pila<E> {
      */
     public String toString() { 
         StringBuilder res = new StringBuilder();
-        res.append("["); 
+        res.append("[");
         /*COMPLETAR*/
+        for(int i = talla; i<0;i--){
+            res.append(tope.dato);
+            res.append(", ");
+        }
+        res.append("]");
         return res.toString(); 
     }
 }
