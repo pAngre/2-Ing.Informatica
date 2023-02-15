@@ -67,7 +67,7 @@ public class LEGListaConPIPlus<E> extends LEGListaConPI<E> implements ListaConPI
             eliminar();
         }
     }
-    /**une una nueva lista a esta lista**/
+    /**une una nueva lista a otra lista**/
     public void concatenar(ListaConPI<E> otra){
         otra.inicio();
         this.fin();
