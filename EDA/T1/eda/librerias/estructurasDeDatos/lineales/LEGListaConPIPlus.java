@@ -69,7 +69,12 @@ public class LEGListaConPIPlus<E> extends LEGListaConPI<E> implements ListaConPI
     }
     /**une una nueva lista a esta lista**/
     public void concatenar(ListaConPI<E> otra){
-        
+        otra.inicio();
+        this.fin();
+        for(int i = 0; i < talla; i++){
+            this.insertar(otra.recuperar());
+            otra.eliminar();
+        }
     }
     /**invierte una lista**/
     public void invertir(){
