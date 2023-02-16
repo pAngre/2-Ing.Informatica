@@ -30,8 +30,7 @@ public class FXMLDocumentController implements Initializable {
     //                      when the button has the focus and enter is pressed
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        labelMessage.setText("SI");
-        buttonClick.setText("Marc es maricon?");
+        labelMessage.setText("Hello, this is your first JavaFX project - IPC");
     }
     
     //=========================================================
