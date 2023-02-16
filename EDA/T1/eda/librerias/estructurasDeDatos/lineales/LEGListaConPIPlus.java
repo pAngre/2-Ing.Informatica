@@ -90,14 +90,24 @@ public class LEGListaConPIPlus<E> extends LEGListaConPI<E> implements ListaConPI
     }
     /**invierte una lista**/
     public void invertir(){
-        LEGListaConPI<E> l = new LEGListaConPI();
+        LEGListaConPIPlus<E> l = new LEGListaConPIPlus();
         for(int i = 0; i < this.talla - 1; i++){
             this.inicio();
             l.inicio();
             l.insertar(this.recuperar());
             this.eliminar();
         }
-        
+        //this = l; this tiene que ser l
+    }
+    
+    public void invertir2(){
+        if(!esVacia()){
+            inicio();
+            E dato = recuperar();
+            eliminar();
+            invertir();
+            insertar(dato);
+        }
     }
     /** coloca el PI en e, si no lo encuentra el PI se pone al final**/
     public void buscar(E e){
