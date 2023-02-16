@@ -83,7 +83,7 @@ public class LEGListaConPIPlus<E> extends LEGListaConPI<E> implements ListaConPI
     public void concatenar(ListaConPI<E> otra){
         otra.inicio();
         this.fin();
-        while(!otra.esFin()){
+        while(!otra.esFin()){ // for(otra.inicio(); !otra.esFin(); otra.siguiente)
             this.insertar(otra.recuperar());
             otra.siguiente();
         }
