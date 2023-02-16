@@ -1,6 +1,6 @@
 package librerias.estructurasDeDatos.lineales;
 
-import librerias.estructurasDeDatos.modelos.ListaConPI;
+import librerias.estructurasDeDatos.modelos.*;
 
 /** Implementa la interfaz ListaConPI mediante una LEG ...
  *  (a) Con Nodo ficticio cabecera.
@@ -114,5 +114,12 @@ public class LEGListaConPI<E> implements ListaConPI<E> {
             s.append(aux.dato.toString() + "]"); 
         } else { s.append("]"); }
         return s.toString();
+    }
+    
+    public static <E extends Comparable<E>> Cola<E> encolarComunes(ListaConPI<E> l1, ListaConPI<E> l2){
+        Cola<E> c = new ArrayCola<E>();
+        
+        
+        return c;
     }
 }

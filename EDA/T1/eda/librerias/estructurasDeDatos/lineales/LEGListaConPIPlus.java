@@ -128,7 +128,5 @@ public class LEGListaConPIPlus<E> extends LEGListaConPI<E> implements ListaConPI
         return s.toString();
     }
     
-    public static <E extends Comparable<E>> Cola<E> encolarComunes(ListaConPI<E> l1, ListaConPI<E> l2){
-        return tu puta madre;
-    }
+
 }
