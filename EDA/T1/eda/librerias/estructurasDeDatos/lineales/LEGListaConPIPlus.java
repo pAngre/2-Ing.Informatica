@@ -34,16 +34,27 @@ public class LEGListaConPIPlus<E> extends LEGListaConPI<E> implements ListaConPI
     public boolean eliminarUltimo(E e){
         int ultpos = 0;
         inicio();
-        for(int i = 1; i < talla + 1; i++){
+        for(int i = 1; i < talla + 1; i++){ // while(!esFIn())
             if(recuperar().equals(e)) ultpos = i;
             siguiente();
         }
         if(ultpos == 0) return false;
         inicio();
-        for(int i = 1; i< ultpos; i++){
+        for(int i = 1; i < ultpos; i++){
             siguiente();
         }
         eliminar();
+        
+        // en vez de declarar una variable ultpos podemos
+        // declarar un Nodo
+        
+        // Solucion de profesor:
+        // NodoLEG<E> ultimo == null;
+        // inicio();
+        // while(!esFIn()){if(recuperar().equals(e)) ultpos = i; siguiente();
+        // if(ultimo == null) return false
+        // else{ ant = ultimo; eliminar();
+            
         return true;
     }
     /**elimina todos los elementos de la lista iguales a e**/
