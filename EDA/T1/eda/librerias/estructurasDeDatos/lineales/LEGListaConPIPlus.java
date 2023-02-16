@@ -67,6 +67,7 @@ public class LEGListaConPIPlus<E> extends LEGListaConPI<E> implements ListaConPI
                 eliminar();
                 elim++;
             }
+            else siguiente();
         }
         if(elim == 0) return false;
         return true;
