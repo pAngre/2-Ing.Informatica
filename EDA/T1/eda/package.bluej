@@ -1,18 +1,14 @@
 #BlueJ package file
 editor.fx.0.height=736
 editor.fx.0.width=800
-editor.fx.0.x=185
-editor.fx.0.y=136
-editor.fx.1.height=815
-editor.fx.1.width=816
-editor.fx.1.x=1022
-editor.fx.1.y=89
+editor.fx.0.x=163
+editor.fx.0.y=47
 objectbench.height=156
-objectbench.width=1326
+objectbench.width=1342
 package.divider.horizontal=0.6
 package.divider.vertical=0.7437106918238994
 package.editor.height=466
-package.editor.width=1210
+package.editor.width=1212
 package.editor.x=0
 package.editor.y=32
 package.frame.height=736
