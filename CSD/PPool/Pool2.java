@@ -30,7 +30,7 @@ public class Pool2 extends Pool{ //max kids/instructor
     }
 
     public void instructorRests() throws InterruptedException{
-        while(iswimming == 1 && kswimming > 0 || kswimming/iswimming < this.ki){
+        while((iswimming == 1 && kswimming > 0) || ((kswimming/(iswimming-1)) < this.ki)){
             log.waitingToRest();
             wait();
         }
