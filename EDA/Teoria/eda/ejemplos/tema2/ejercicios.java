@@ -21,4 +21,17 @@ public class ejercicios
         return puntoCruce(v, 0, v.length - 1);
     }
     
+    public static <T extends Comparable <T>> void mergeSort(T[] v ,int izq, int der){
+        if(izq < der){
+            int mitad = (izq + der) / 2;
+            mergeSort(v, izq, mitad);
+            mergeSort(v, mitad + 1, der);
+            mergeDC(v, izq, mitad + 1, der);
+        }
+    }
+    
+    public static <T extends Comparable <T>> void mergeDC(T[] v, int i, int m, int j){
+        T[] res;
+        
+    }
 }

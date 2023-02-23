@@ -1,8 +1,8 @@
 #BlueJ package file
-editor.fx.0.height=736
-editor.fx.0.width=1366
+editor.fx.0.height=0
+editor.fx.0.width=0
 editor.fx.0.x=0
-editor.fx.0.y=32
+editor.fx.0.y=0
 objectbench.height=96
 objectbench.width=1342
 package.divider.horizontal=0.6
@@ -126,5 +126,5 @@ target9.name=Pool2
 target9.showInterface=false
 target9.type=ClassTarget
 target9.width=120
-target9.x=280
+target9.x=290
 target9.y=230
