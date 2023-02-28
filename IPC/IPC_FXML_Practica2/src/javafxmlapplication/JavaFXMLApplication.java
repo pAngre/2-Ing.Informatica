@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class JavaFXMLApplication extends Application {
@@ -28,7 +29,8 @@ public class JavaFXMLApplication extends Application {
         //     - configuracion del stage
         //     - se muestra el stage de manera no modal mediante el metodo show()
         stage.setScene(scene);
-        stage.setTitle("start PROJECT - IPC:");
+        stage.setTitle("Event Handlers");
+        //stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
     }
 
@@ -39,7 +41,4 @@ public class JavaFXMLApplication extends Application {
         launch(args);
         
     }
-
-
-    
 }
