@@ -19,7 +19,6 @@ import javafx.scene.text.Text;
  * @author jsoler
  */
 public class FXMLDocumentController implements Initializable {
-    private Label labelMessage;
     @FXML
     private Button boton_01;
     @FXML
