@@ -8,4 +8,6 @@ comment3.params=v\ izq\ der
 comment3.target=void\ mergeSort(java.lang.Comparable[],\ int,\ int)
 comment4.params=v\ i\ m\ j
 comment4.target=void\ mergeDC(java.lang.Comparable[],\ int,\ int,\ int)
-numComments=5
+comment5.params=v
+comment5.target=void\ quickSort(java.lang.Comparable[])
+numComments=6

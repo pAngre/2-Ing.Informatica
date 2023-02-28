@@ -64,4 +64,9 @@ public class ejercicios
         for(int r = i2; r <= j; r++) res[k++] = v[r];
         for(int r = 0; r < res.length; r++) v[r + i] = res[r];
     }
+    
+    
+    public static <T extends Comparable <T>> void quickSort(T[] v){
+        //quickSort(v, 0, v.length - 1);
+    }
 }

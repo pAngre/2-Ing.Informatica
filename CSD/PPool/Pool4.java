@@ -15,12 +15,11 @@ public class Pool4 extends Pool{ //kids cannot enter if there are instructors wa
         }
         kswimming++;
         log.swimming();
-        notifyAll();
     }
     public synchronized void kidRests(){
         kswimming--;
-        log.resting();
         notifyAll(); 
+        log.resting();
     }
     public synchronized void instructorSwims() throws InterruptedException{
         while(kswimming + iswimming == cap){
@@ -28,20 +27,20 @@ public class Pool4 extends Pool{ //kids cannot enter if there are instructors wa
             wait();
         }
         iswimming++;
-        log.swimming();
         notifyAll();
+        log.swimming();
     }
 
     public synchronized void instructorRests() throws InterruptedException{
-        while((iswimming == 1 && kswimming > 0) || ((kswimming/(iswimming-1)) >= this.ki)){
+        while(((iswimming > 0) && (kswimming > 0)) || (((iswimming - 1) * ki) <= kswimming && kswimming > 0)){
             waitingInstructor++;
             log.waitingToRest();
             wait();
             waitingInstructor--;
         }
         iswimming--;
-        log.resting();
         notifyAll();
+        log.resting();
     }
 }
 
