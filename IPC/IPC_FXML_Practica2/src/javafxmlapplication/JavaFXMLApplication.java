@@ -31,7 +31,7 @@ public class JavaFXMLApplication extends Application {
         stage.setScene(scene);
         stage.setTitle("Event Handlers");
         //stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setResizable(false);
+        //stage.setResizable(false);
         stage.show();
     }
 
