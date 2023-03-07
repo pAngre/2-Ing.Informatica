@@ -29,6 +29,9 @@ import static javafxmlapplication.Utils.*;
  */
 public class FXMLDocumentController implements Initializable {
     
+    private double Y_ini;
+    private double X_ini;
+    
     @FXML
     private Circle myBall;
     @FXML
@@ -74,8 +77,8 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handleMousePressed(MouseEvent event) {
-        double x =event.getSceneX();
+    private void gridMousePressed(MouseEvent event) {
+        double x = event.getSceneX();
         double y = event.getSceneY();
         GridPane.setColumnIndex(myBall, columnCalc(grid, (int)x));
         GridPane.setRowIndex(myBall, rowCalc(grid, (int)y));
@@ -90,5 +93,27 @@ public class FXMLDocumentController implements Initializable {
         return (int) (y / celdaHeight);
     }
 
-    
+    @FXML
+    private void handleMouseReleased(MouseEvent event) {
+        myBall.setTranslateX(0);
+        myBall.setTranslateY(0);
+        
+        double x = event.getSceneX();
+        double y = event.getSceneY();
+        GridPane.setColumnIndex(myBall,columnCalc(grid, (int)x));
+        GridPane.setRowIndex(myBall,rowCalc(grid, (int)y));
+        event.consume();
+    }
+
+    @FXML
+    private void handleMouseDragged(MouseEvent event) {
+        myBall.setTranslateX(event.getSceneX() - X_ini);
+        myBall.setTranslateY(event.getSceneY() - Y_ini);
+    }
+
+    @FXML
+    private void ballMousePressed(MouseEvent event) {
+        X_ini = event.getSceneX();
+        Y_ini = event.getSceneY();
+    }
 }
