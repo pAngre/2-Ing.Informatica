@@ -30,6 +30,7 @@ public class JavaFXMLApplication extends Application {
         //     - se muestra el stage de manera no modal mediante el metodo show()
         stage.setScene(scene);
         stage.setTitle("Event Handlers");
+        stage.setResizable(false);
         //stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
     }
