@@ -163,8 +163,13 @@ public class Ordenacion {
         T[] aux = (T[]) new Comparable [v1.length + v2.length];
         int i = 0,j = 0, k = 0;
         
-        
-        
+        while(i <= v1.length  -1 && j <= v2.length - 1){
+            if(v1[i].compareTo(v2[j]) < 0){aux[k++] = v1[i++];}
+            else{ aux[k++] = v2[j++];}
+        }
+        while(i <= v1.length - 1){ aux[k++] = v1[i++];}
+        while(j <= v2.length - 1){ aux[k++] = v2[j++];}
+    
         return aux;
     }
 
