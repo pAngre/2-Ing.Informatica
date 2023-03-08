@@ -8,34 +8,20 @@ dependency2.type=UsesDependency
 dependency3.from=LEGListaConPIPlus
 dependency3.to=NodoLEG
 dependency3.type=UsesDependency
-<<<<<<< HEAD
-dependency4.from=LEGListaConPIPlus
-dependency4.to=LEGListaConPI
-dependency4.type=UsesDependency
-dependency5.from=LEGListaConPIPlus
-dependency5.to=NodoLEG
-=======
 dependency4.from=LEGListaConPI
 dependency4.to=NodoLEG
 dependency4.type=UsesDependency
 dependency5.from=LEGListaConPI
 dependency5.to=ArrayCola
->>>>>>> a970d70650c8de12cee72553dd43b279f642d6e0
 dependency5.type=UsesDependency
 objectbench.height=120
-objectbench.width=1342
+objectbench.width=1326
 package.divider.horizontal=0.6
 package.divider.vertical=0.800314465408805
 package.editor.height=502
-<<<<<<< HEAD
 package.editor.width=1210
-package.editor.x=68
-package.editor.y=62
-=======
-package.editor.width=1212
 package.editor.x=0
 package.editor.y=32
->>>>>>> a970d70650c8de12cee72553dd43b279f642d6e0
 package.frame.height=736
 package.frame.width=1366
 package.numDependencies=5
@@ -95,35 +81,29 @@ target5.width=200
 target5.x=370
 target5.y=10
 target6.height=50
-target6.name=LEGLista
+target6.name=ArrayColaPlus
 target6.naviview.expanded=false
 target6.showInterface=false
 target6.type=ClassTarget
-<<<<<<< HEAD
-target6.width=140
+target6.width=160
 target6.x=170
 target6.y=410
-=======
-target6.width=120
-target6.x=280
-target6.y=70
->>>>>>> a970d70650c8de12cee72553dd43b279f642d6e0
 target7.height=50
-target7.name=LEGPila
+target7.name=LEGLista
 target7.naviview.expanded=false
 target7.showInterface=false
 target7.type=ClassTarget
-target7.width=110
-target7.x=200
-target7.y=180
+target7.width=120
+target7.x=280
+target7.y=70
 target8.height=50
-target8.name=ArrayColaPlus
+target8.name=LEGPila
 target8.naviview.expanded=false
 target8.showInterface=false
 target8.type=ClassTarget
-target8.width=160
-target8.x=170
-target8.y=410
+target8.width=110
+target8.x=200
+target8.y=180
 target9.height=50
 target9.name=LEGListaConPI
 target9.naviview.expanded=true
