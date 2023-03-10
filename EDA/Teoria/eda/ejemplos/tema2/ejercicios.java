@@ -58,5 +58,45 @@ public class ejercicios
         }
     }
     
+    public static int subsecuenciaMax(int[] v){
+        return subsecuenciaMax(v, 0, v.length - 1);
+    }
     
+    public static int subsecuenciaMax(int[] v , int izq, int der){
+        if(izq == der){
+            if(v[izq] > 0) return v[izq];
+            else return 0;
+        }
+        int m = (izq + der) / 2;
+        int sumaMaxIzq = subsecuenciaMax(v, izq, m);
+        int sumaMaxDer = subsecuenciaMax(v, m + 1, der);
+        
+        int sumaMaxBordeIzq = 0, sumaBordeIzq = 0;
+        for (int i = m; i >= izq; i--) {
+            sumaBordeIzq += v[i] ;
+            if (sumaBordeIzq > sumaMaxBordeIzq) sumaMaxBordeIzq = sumaBordeIzq;
+        }
+        int sumaMaxBordeDer = 0, sumaBordeDer = 0;
+        for (int i = m + 1; i <= der; i++) {
+            sumaBordeDer += v[i] ;
+            if (sumaBordeDer > sumaMaxBordeDer) sumaMaxBordeDer = sumaBordeDer;
+        }
+        return Math.max(Math.max(sumaMaxIzq, sumaMaxDer), sumaMaxBordeIzq + sumaMaxBordeDer);
+    }
+    
+    public static int numRepe(int[] v){
+        return numRepe(v, 0, v.length - 1);
+    }
+    public static int numRepe(int[] v, int izq, int der){
+        if(izq > der){
+            return -1;
+        }
+        int m = (izq + der) / 2;
+        if(v[m] != m + v[0]){
+            if(m > 0 && v[m] == v[m-1]){return v[m];}
+            
+            return numRepe(v,izq,m-1);
+        }
+        return numRepe(v,m+1,der);
+    }
 }

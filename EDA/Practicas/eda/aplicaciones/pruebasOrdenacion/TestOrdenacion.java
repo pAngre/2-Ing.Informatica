@@ -73,7 +73,7 @@ public class TestOrdenacion {
                 t1 = System.nanoTime();
                 Ordenacion.mergeSort2(aux2);
                 t2 = System.nanoTime();
-                tacum1 += t2 - t1; 
+                tacum2 += t2 - t1; 
                 
                 
                 t1 = System.nanoTime();

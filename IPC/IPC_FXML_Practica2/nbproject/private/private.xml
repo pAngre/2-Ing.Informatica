@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/home/angre/UPV/IPC/IPC_FXML_Practica2/src/javafxmlapplication/JavaFXMLApplication.java</file>
             <file>file:/home/angre/UPV/IPC/IPC_FXML_Practica2/src/javafxmlapplication/FXMLDocumentController.java</file>
+=======
+            <file>file:/C:/Users/pangr/Documents/UPV/IPC/IPC_FXML_Practica2/src/javafxmlapplication/JavaFXMLApplication.java</file>
+            <file>file:/C:/Users/pangr/Documents/UPV/IPC/IPC_FXML_Practica2/src/javafxmlapplication/FXMLDocumentController.java</file>
+>>>>>>> a7d2a2de383eb1e00e1a65eb224afb797699b636
         </group>
     </open-files>
 </project-private>

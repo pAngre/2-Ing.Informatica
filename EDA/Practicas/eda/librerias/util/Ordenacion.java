@@ -1,6 +1,5 @@
 package librerias.util;
 
- 
 /** 
  *  La clase Ordenacion contiene:
  *  - La implementacion de los algoritmos de ordenacion in-situ DyV
@@ -12,7 +11,7 @@ package librerias.util;
  */
 
 public class Ordenacion {
-    
+
     // QUICK SORT -------------------------------------------------
     /** 
      *  Algoritmo de ordenacion quicksort (Hoare, 1963). 
@@ -24,10 +23,10 @@ public class Ordenacion {
     public static <T extends Comparable<T>> void quickSort(T[]  a) {
         quickSort(a, 0, a.length - 1);
     }
-   
+
     // Ordena el array a[izq, der] por quickSort, izq <= der
     private static <T extends Comparable<T>> void quickSort(T[] a, 
-                                                            int izq, int der) {
+    int izq, int der) {
         if (izq < der) {
             T pivot = mediana3(a, izq, der);
             int i = izq;
@@ -51,11 +50,11 @@ public class Ordenacion {
         a[ind1] = a[ind2];
         a[ind2] = tmp;   
     }
- 
+
     // Tras calcular la Mediana de 3 del subArray a[izq, der], 
     // devuelve el valor del pivote
     private static <T extends Comparable<T>> T mediana3(T[] a, 
-                                                        int izq, int der) {    
+    int izq, int der) {    
         int c = (izq + der) / 2;   
         if (a[c].compareTo(a[izq]) < 0)   { intercambiar(a, izq, c); }
         if (a[der].compareTo(a[izq]) < 0) { intercambiar(a, izq, der); }
@@ -75,7 +74,7 @@ public class Ordenacion {
     public static <T extends Comparable<T>> void mergeSort1(T[] v) {
         mergeSort1(v, 0, v.length - 1);
     }
-    
+
     /**
      * SII i<=f: ordena ascendentemente el subarray v[i, f].
      * 
@@ -84,7 +83,7 @@ public class Ordenacion {
      * @param f  Extremo superior del intervalo a ordenar
      */
     private static <T extends Comparable<T>> void mergeSort1(T[] v, 
-                                                             int i, int f) {
+    int i, int f) {
         if (i < f) {
             int m = (i + f) / 2;
             mergeSort1(v, i, m);
@@ -92,18 +91,18 @@ public class Ordenacion {
             merge1(v, i, f, m);
         }
     }        
-    
+
     /**
-     * Mezcla internamente los subarrays v[i, m] y v[m + 1, f], 
-     * ambos ordenados Asc.
-     * 
-     * @param v  Sus elementos implementan la interfaz Comparable
-     * @param i  Extremo inferior del intervalo a mezclar
-     * @param f  Extremo superior del intervalo a mezclar
+    * Mezcla internamente los subarrays v[i, m] y v[m + 1, f], 
+    * ambos ordenados Asc.
+    * 
+    * @param v  Sus elementos implementan la interfaz Comparable
+    * @param i  Extremo inferior del intervalo a mezclar
+    * @param f  Extremo superior del intervalo a mezclar
     */
     @SuppressWarnings("unchecked")
     private static <T extends Comparable<T>> void merge1(T[] v, 
-                                                         int i, int f, int m) {
+    int i, int f, int m) {
         int a = i, b = m + 1, k = 0;
         T[] aux = (T[]) new Comparable[f - i + 1];
         while (a <= m && b <= f) {
@@ -112,10 +111,10 @@ public class Ordenacion {
         }
         while (a <= m) { aux[k++] = v[a++]; }
         while (b <= f) { aux[k++] = v[b++]; }
-        
+
         for (a = i, k = 0; a <= f; a++, k++) { v[a] = aux[k]; }
     }   
-    
+
     // MERGE SORT --------------------------------------------   
     // VERSION 2 
     /**
@@ -126,10 +125,10 @@ public class Ordenacion {
     public static <T extends Comparable<T>> void mergeSort2(T[] v) {
         T[] res = mergeSort2(v, 0, v.length - 1);
         for(int i = 0; i < v.length; i++){
-           v[i] = res[i];
+            v[i] = res[i];
         }
     }
-    
+
     /**
      * SII i<=f: devuelve un array con los elementos del subarray 
      * v[i, f] ordenados Asc. 
@@ -140,7 +139,7 @@ public class Ordenacion {
      * @return T[], el array resultante de ordenacion de v[i, f]
      */
     private static <T extends Comparable<T>> T[] mergeSort2(T[] v,
-                                                             int i, int f) {
+    int i, int f) {
         if(i < f){
             int m = (i + f) / 2;
             T[] v1 = mergeSort2(v, i, m);
@@ -151,32 +150,29 @@ public class Ordenacion {
         res[0] = v[i];
         return res;
     }        
-    
+
     /**
-     * Devuelve el array mezcla de v1 y v2, dos arrays ordenados Asc.
-     * 
-     * @param v1  Sus elementos implementan la interfaz Comparable
-     * @param v2  Sus elementos implementan la interfaz Comparable
-     * @return T[], el array resultante de la fusion de v1 y v2
-     */
+    * Devuelve el array mezcla de v1 y v2, dos arrays ordenados Asc.
+    * 
+    * @param v1  Sus elementos implementan la interfaz Comparable
+    * @param v2  Sus elementos implementan la interfaz Comparable
+    * @return T[], el array resultante de la fusion de v1 y v2
+    */
     @SuppressWarnings("unchecked")
     private static <T extends Comparable<T>> T[] merge2(T[] v1, T[] v2) {
         T[] aux = (T[]) new Comparable [v1.length + v2.length];
         int i = 0,j = 0, k = 0;
         
-        while(i <= (v1.length - 1) && j <= (v2.length - 1)){
-            if(v1[i].compareTo(v2[j]) < 0){
-                aux[k++] = v1[i++];
-            }
-            else{
-                aux[k++] = v2[j++];
-            }
+        while(i <= v1.length  -1 && j <= v2.length - 1){
+            if(v1[i].compareTo(v2[j]) < 0){aux[k++] = v1[i++];}
+            else{ aux[k++] = v2[j++];}
         }
-        while(i < v1.length - 1){ aux[k++] = v1[i++];}
-        while(i < v2.length - 1){ aux[k++] = v2[j++];}
+        while(i <= v1.length - 1){ aux[k++] = v1[i++];}
+        while(j <= v2.length - 1){ aux[k++] = v2[j++];}
+    
         return aux;
     }
-    
+
     // Metodo auxiliar --------------------------------------------
     /** 
      *  Comprueba si los arrays a y b son iguales elemento a elemento.
