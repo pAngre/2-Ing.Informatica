@@ -22,17 +22,31 @@ public class PPhilo extends JPanel implements ActionListener {
         switch (type) {
         case 0: 
             t = new RegularTable(sman);
-            for (i=0; i<5; i++) philo[i]=new Philo(i,cycles,delay,t); 
+            for (i=0; i<5; i++)philo[i]=new Philo(i,cycles,delay,t); 
             break;
         case 1: 
             System.out.println("Assimetry (last/but last).- TO BE IMPLEMENTED");
             t = new RegularTable(sman);
-            for (i=0; i<5; i++) philo[i]=new Philo(i,cycles,delay,t); 
+            for (i=0; i<5; i++){
+               if(i != 4){
+                   philo[i]=new Philo(i,cycles,delay,t);
+               }
+               else{
+                   philo[i] = new LefthandedPhilo(i,cycles,delay,t);
+               }
+            }
             break;
         case 2: 
             System.out.println("Assimetry (even/odd).- TO BE IMPLEMENTED");
             t = new RegularTable(sman);
-            for (i=0; i<5; i++) philo[i]=new Philo(i,cycles,delay,t); 
+            for (i=0; i<5; i++){
+               if(i != 4){
+                   philo[i]=new Philo(i,cycles,delay,t);
+               }
+               else{
+                   philo[i] = new LefthandedPhilo(i,cycles,delay,t);
+               }
+            }
             break;
         case 3: 
             System.out.println("Both or None.- TO BE IMPLEMENTED");
@@ -51,9 +65,9 @@ public class PPhilo extends JPanel implements ActionListener {
         sman.await();
         System.out.println(sman.deadlock()?" DEADLOCK":"   OK");
         
-    	// If deadlock, interrupt all the philosophers 
+        // If deadlock, interrupt all the philosophers 
         if (sman.deadlock())
-        	for (i=0; i<5; i++) philo[i].interrupt();
+            for (i=0; i<5; i++) philo[i].interrupt();
         
         // Wait for the philosophers to finish
         try {
@@ -124,14 +138,14 @@ public class PPhilo extends JPanel implements ActionListener {
     }
 
     public static void main(String[] args) {
-    	delay=integer(args,0,10,1,10);
-    	SwingUtilities.invokeLater(new Runnable() {
-    		public void run() {
-    			JFrame frame = new JFrame("CSD: 5 Philosophers");
-    			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    			frame.setContentPane(new PPhilo());
-    			frame.pack(); frame.setVisible(true);
-    		}
-    	});
+        delay=integer(args,0,10,1,10);
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                JFrame frame = new JFrame("CSD: 5 Philosophers");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setContentPane(new PPhilo());
+                frame.pack(); frame.setVisible(true);
+            }
+        });
     }
 }

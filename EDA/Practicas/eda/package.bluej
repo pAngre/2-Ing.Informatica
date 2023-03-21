@@ -3,21 +3,16 @@ editor.fx.0.height=0
 editor.fx.0.width=0
 editor.fx.0.x=0
 editor.fx.0.y=0
-<<<<<<< HEAD
 objectbench.height=90
 objectbench.width=1342
-=======
-objectbench.height=138
-objectbench.width=1896
->>>>>>> a7d2a2de383eb1e00e1a65eb224afb797699b636
 package.divider.horizontal=0.6
-package.divider.vertical=0.8483263598326359
-package.editor.height=804
-package.editor.width=1780
+package.divider.vertical=0.8474842767295597
+package.editor.height=532
+package.editor.width=1212
 package.editor.x=0
-package.editor.y=42
-package.frame.height=1056
-package.frame.width=1936
+package.editor.y=32
+package.frame.height=736
+package.frame.width=1366
 package.numDependencies=0
 package.numTargets=2
 package.showExtends=true
