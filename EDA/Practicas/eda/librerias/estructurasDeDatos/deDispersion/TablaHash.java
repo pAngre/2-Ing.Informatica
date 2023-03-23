@@ -183,11 +183,12 @@ public class TablaHash<C, V> implements Map<C, V> {
     @SuppressWarnings("unchecked")
     protected final void rehashing() {
         /* COMPLETAR */
-        double fC = factorCarga();
-        if(fC > FACTOR_DE_CARGA){
-            ListaConPI<EntradaHash<C, V>> [] aux = elArray;
-            elArray = new LEGListaConPI[siguientePrimo(elArray.length*2)];
-            for(int i = 0; i < elArray.length; i++) elArray[i] = new LEGListaConPI<EntradaHash<C, V>>();
+        if(this.factorCarga() > FACTOR_DE_CARGA){
+            ListaConPI<EntradaHash<C, V>>[] aux = elArray;
+            elArray = new LEGListaConPI[siguientePrimo(aux.length * 2)];
+            for(int i = 0; i < elArray.length; i++){
+                elArray[i] = new LEGListaConPI<EntradaHash<C, V>>();
+            }
             for(int i = 0; i < aux.length; i++){
                 ListaConPI<EntradaHash<C, V>> l = aux[i];
                 for(l.inicio(); !l.esFin(); l.siguiente()){
@@ -234,13 +235,15 @@ public class TablaHash<C, V> implements Map<C, V> {
      *  cubetas de una Tabla Hash Enlazada */
     public final double desviacionTipica() {
         /* COMPLETAR */
-        double media = factorCarga();
         double suma = 0;
-        for(int i  = 0; i < elArray.length; i++){
-            suma += Math.pow(elArray[i].talla() - media, 2);
-        }
-        return Math.sqrt(suma / elArray.length); // para que compile
+        double media = factorCarga();
+        int l = elArray.length;
         
+        for(int i = 0; i < l; i++){
+            suma += Math.pow(elArray[i].talla() - media,2);
+        }
+        
+        return Math.sqrt(suma / l);
     }
     
     /** Devuelve el coste promedio de localizar
@@ -255,9 +258,7 @@ public class TablaHash<C, V> implements Map<C, V> {
         for(int i = 0; i < elArray.length; i++){
             res += (elArray[i].talla() * (elArray[i].talla() - 1)) / 2;
         }
-        
-        return res/talla;
-        
+        return res / talla;
     }
 
     /** Devuelve un String con el histograma de ocupacion 
