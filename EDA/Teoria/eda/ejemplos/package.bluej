@@ -1,20 +1,25 @@
 #BlueJ package file
+<<<<<<< HEAD
 objectbench.height=120
 <<<<<<< HEAD
 objectbench.width=791
 =======
 objectbench.width=1342
 >>>>>>> abb286c877e952e6b1757a74b89f1dbaa97490ba
+=======
+objectbench.height=83
+objectbench.width=1000
+>>>>>>> 972f532d5b02593591a3d65859672821b9a26034
 package.divider.horizontal=0.6
-package.divider.vertical=0.800314465408805
-package.editor.height=502
-package.editor.width=1212
-package.editor.x=0
-package.editor.y=32
-package.frame.height=736
-package.frame.width=1366
+package.divider.vertical=0.8008849557522124
+package.editor.height=355
+package.editor.width=870
+package.editor.x=255
+package.editor.y=134
+package.frame.height=552
+package.frame.width=1024
 package.numDependencies=0
-package.numTargets=3
+package.numTargets=4
 package.showExtends=true
 package.showUses=true
 readme.height=60
@@ -28,15 +33,21 @@ target1.type=PackageTarget
 target1.width=80
 target1.x=260
 target1.y=180
-target2.height=62
-target2.name=tema1
+target2.height=60
+target2.name=tema4
 target2.type=PackageTarget
 target2.width=80
-target2.x=20
-target2.y=180
-target3.height=60
-target3.name=tema2
+target2.x=410
+target2.y=190
+target3.height=62
+target3.name=tema1
 target3.type=PackageTarget
 target3.width=80
-target3.x=140
+target3.x=20
 target3.y=180
+target4.height=60
+target4.name=tema2
+target4.type=PackageTarget
+target4.width=80
+target4.x=140
+target4.y=180
