@@ -54,14 +54,19 @@ public class ApuestaPrimitiva {
      *          o -1 en caso contrario
      */
     protected int posicionDe(NumeroPrimitiva n) {
+        int num = 0;
         combinacion.inicio();
-        for(int i = 0; i < 6; i++){
-           if(combinacion.recuperar().equals(n)){
-               return i;
-           }
-           combinacion.siguiente();
+        while(!combinacion.esFin()){
+            if(n.equals(combinacion.recuperar())){
+                break;
+            }
+            num++;
+            combinacion.siguiente();
         }
-        return -1;
+        if(combinacion.esFin()){
+            num = -1;
+        }
+        return num;
     }
     
     /**
