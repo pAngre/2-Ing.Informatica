@@ -16,4 +16,6 @@ comment4.text=\ Comprueba\ si\ unaPalabra\ es\ un\ termino\ del\ Indice\ de\ una
 comment5.params=
 comment5.target=librerias.estructurasDeDatos.modelos.ListaConPI\ hapax()
 comment5.text=\ Devuelve\ una\ ListaConPI\ con\ aquellos\ terminos\ del\ Indice\ de\ una\ BD\ que\ \n\ \ aparecen\ solo\ una\ vez\ en\ sus\ libros,\ i.e.\ los\ llamados\ "hapax\ legomena"\ \n\ \ de\ la\ BD,\ o\ null\ si\ no\ existe\ ninguno.\n
-numComments=6
+comment6.params=prefijo\ libro
+comment6.target=librerias.estructurasDeDatos.modelos.ListaConPI\ comienzanPor(java.lang.String,\ java.lang.String)
+numComments=7
