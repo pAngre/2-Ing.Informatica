@@ -224,4 +224,31 @@ public class BuscadorDeLaBibl {
         if(res.talla() == 0) return null;
         return res;
     }
+    
+    public ListaConPI<Termino> comienzanPor(String prefijo, String libro){
+        if(!esTermino(prefijo)){return null;}
+        ListaConPI<Termino> res = new LEGListaConPI<Termino>();
+        ListaConPI<Termino> c = index.claves();
+        ListaConPI<BuscadorDeLaBibl.Posting> v = new LEGListaConPI();
+        
+        c.inicio();
+        while(!c.esFin()){
+            Termino clave = c.recuperar();
+            if(clave.equals(libro)){
+                v = index.recuperar(clave);
+                break;
+            }
+            c.siguiente();
+        }
+        if(v.talla() == 0) return null;
+        v.inicio();
+        while(!v.esFin()){
+            String cad = v.recuperar().toString();
+            if(cad.startsWith(prefijo)){
+                //res += v.recuperar();
+            }
+            v.siguiente();
+        }
+        return res;
+    }
 }    
