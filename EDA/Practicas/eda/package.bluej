@@ -4,21 +4,15 @@ editor.fx.0.width=0
 editor.fx.0.x=0
 editor.fx.0.y=0
 objectbench.height=96
-objectbench.width=586
-package.divider.horizontal=0.6002024291497976
-package.divider.vertical=0.7721238938053098
-package.editor.height=342
-<<<<<<< HEAD
-package.editor.width=868
-package.editor.x=147
-package.editor.y=336
-=======
-package.editor.width=870
-package.editor.x=190
-package.editor.y=166
->>>>>>> 972f532d5b02593591a3d65859672821b9a26034
-package.frame.height=552
-package.frame.width=1024
+objectbench.width=1133
+package.divider.horizontal=0.6
+package.divider.vertical=0.8922594142259415
+package.editor.height=846
+package.editor.width=1780
+package.editor.x=0
+package.editor.y=0
+package.frame.height=1056
+package.frame.width=1936
 package.numDependencies=0
 package.numTargets=2
 package.showExtends=true

@@ -2,27 +2,16 @@
 dependency1.from=TablaHash
 dependency1.to=EntradaHash
 dependency1.type=UsesDependency
-<<<<<<< HEAD
-objectbench.height=93
-objectbench.width=721
-package.divider.horizontal=0.5473684210526316
-package.divider.vertical=0.8427672955974843
-package.editor.height=529
-package.editor.width=1210
-package.editor.x=165
-package.editor.y=270
-=======
 objectbench.height=92
-objectbench.width=1342
-package.divider.horizontal=0.6
-package.divider.vertical=0.8443396226415094
-package.editor.height=530
-package.editor.width=1212
-package.editor.x=0
-package.editor.y=32
->>>>>>> 972f532d5b02593591a3d65859672821b9a26034
-package.frame.height=736
-package.frame.width=1366
+objectbench.width=595
+package.divider.horizontal=0.6417910447761194
+package.divider.vertical=0.8946808510638298
+package.editor.height=834
+package.editor.width=818
+package.editor.x=953
+package.editor.y=0
+package.frame.height=1040
+package.frame.width=974
 package.numDependencies=1
 package.numTargets=3
 package.showExtends=true
