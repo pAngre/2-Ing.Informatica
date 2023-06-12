@@ -13,7 +13,7 @@ import librerias.estructurasDeDatos.lineales.LEGListaConPI;
  * @param <V>  tipo de Valores del Map que implementa
  * 
  * @author (EDA-QA) 
- * @version (Curso 2021-2022)
+ * @version (Curso 2020-2021)
  */
 
 public class TablaHash<C, V> implements Map<C, V> {
@@ -23,7 +23,7 @@ public class TablaHash<C, V> implements Map<C, V> {
     // UNA CTE JAVA que representa...
     /** El valor (float) del factor de carga estandar (por defecto) de una  
      *  Tabla Hash, el mismo que se usa en la clase java.util.HashMap) */
-    public static final double FACTOR_DE_CARGA = 0.75;
+    public static final double FC_ESTANDAR = 0.75;
     
     // UNA CTE JAVA que representa...
     /** El valor (boolean) que indica si una Tabla Hash realiza 
@@ -57,8 +57,8 @@ public class TablaHash<C, V> implements Map<C, V> {
     // i.e. la posicion de la cubeta en la que la que se ubica  
     // la Entrada de Clave c
     protected int indiceHash(C c) {
-        int indiceHash = c.hashCode() % elArray.length;
-        if (indiceHash < 0) { indiceHash += elArray.length; }
+        int indiceHash = c.hashCode() % this.elArray.length;
+        if (indiceHash < 0) { indiceHash += this.elArray.length; }
         return indiceHash;
     }
     
@@ -66,8 +66,8 @@ public class TablaHash<C, V> implements Map<C, V> {
      *  Entradas y factor de carga 0.75 */
     @SuppressWarnings("unchecked") 
     public TablaHash(int tallaMaximaEstimada) {
-        int n = (int) (tallaMaximaEstimada / FACTOR_DE_CARGA);
-        int capacidad = siguientePrimo(n);
+        int capacidad = (int) (tallaMaximaEstimada / FC_ESTANDAR);
+        capacidad = siguientePrimo(capacidad);
         elArray = new LEGListaConPI[capacidad];
         for (int i = 0; i < elArray.length; i++) {
             elArray[i] = new LEGListaConPI<EntradaHash<C, V>>();
@@ -78,16 +78,25 @@ public class TablaHash<C, V> implements Map<C, V> {
     // Devuelve un numero primo MAYOR o IGUAL a n, 
     // i.e. el primo que sigue a n
     public static final int siguientePrimo(int n) {
-        if (n % 2 == 0) n++;
-        for (; !esPrimo(n); n += 2); 
-        return n;
+        int aux = n;
+        if (aux % 2 == 0) { aux++; }
+        for ( ; !esPrimo(aux); aux += 2) { ; }
+        return aux;
     } 
     // Comprueba si n es un numero primo
     protected static final boolean esPrimo(int n) {
-        for (int i = 3; i * i <= n; i += 2) 
-            if (n % i == 0) return false; // n NO es primo
+        for (int i = 3; i * i <= n; i += 2) {
+            if (n % i == 0) { return false; } // n NO es primo
+        }
         return true; // n SI es primo
-    }    
+    }
+    
+    /** Devuelve el factor de carga (real) de una Tabla Hash,   
+     *  lo que equivale a la longitud media de sus cubetas en  
+     *  una implemetacion Enlazada de la Tabla */
+    public final double factorCarga() { 
+        return (double) talla / elArray.length; 
+    }
     
     /** Comprueba si una Tabla Hash esta vacia,  
      *  i.e. si tiene 0 Entradas */
@@ -102,24 +111,48 @@ public class TablaHash<C, V> implements Map<C, V> {
       *  Tabla Hash */
     public int numeroDeRH() { return numRH; } 
 
-    
-    private ListaConPI<EntradaHash<C, V>> localizar(C c) {
-        int pos = indiceHash(c);
-        ListaConPI<EntradaHash<C, V>> cubeta = elArray[pos];
-        for (cubeta.inicio(); 
-             !cubeta.esFin() && !cubeta.recuperar().clave.equals(c); 
-             cubeta.siguiente());
-        return cubeta;
+    /** Devuelve una ListaConPI con las talla() claves  
+     *  de una Tabla Hash */
+    public ListaConPI<C> claves() {
+        ListaConPI<C> res = new LEGListaConPI<C>();
+        for (int i = 0; i < elArray.length; i++) {
+            ListaConPI<EntradaHash<C, V>> l = elArray[i];
+            for (l.inicio(); !l.esFin(); l.siguiente()) {
+                EntradaHash<C, V> e = l.recuperar();
+                res.insertar(e.clave); 
+            }
+        }
+        return res;
     }
-        
+    
+    /** Devuelve un String con las Entradas de una Tabla Hash
+     *  en un formato texto dado (ver toString de EntradaHash)
+     */
+    // RECUERDA: usa la clase StringBuilder por eficiencia
+    public final String toString() {
+        StringBuilder res = new StringBuilder();
+        for (ListaConPI<EntradaHash<C, V>> l : elArray) {
+            for (l.inicio(); !l.esFin(); l.siguiente()) {
+                res.append(l.recuperar() + "\n");
+            }
+        }   
+        return res.toString(); 
+    }
+    
     /** Devuelve el valor de la Entrada con Clave c de una 
      *  Tabla Hash, o null si tal entrada no esta en la Tabla */
     public V recuperar(C c) {
+        int pos = indiceHash(c);
+        ListaConPI<EntradaHash<C, V>> l = elArray[pos];
         V valor = null;
-        // Busqueda en cubeta de la Entrada de clave c cuyo valor se quiere recuperar 
-        ListaConPI<EntradaHash<C, V>> cubeta = localizar(c);
-        // Resolucion de la Busqueda: SII esta la Entrada se recupera su valor
-        if (!cubeta.esFin()) { valor = cubeta.recuperar().valor; }
+        // Busqueda de la Entrada de Clave c en la cubeta l
+        l.inicio();
+        while (!l.esFin() && !l.recuperar().clave.equals(c)) { 
+            l.siguiente(); 
+        }
+        // Resolucion de la Busqueda: SII esta en la Tabla, se   
+        // recupera el valor la Entrada de Clave c 
+        if (!l.esFin()) { valor = l.recuperar().valor; }
         return valor;
     }
     
@@ -127,14 +160,20 @@ public class TablaHash<C, V> implements Map<C, V> {
      *  devuelve su valor asociado, o null si tal entrada 
      *  no esta en la Tabla */
     public V eliminar(C c) {
-        V valor = null;
-        // Busqueda en cubeta de la Entrada de clave c a eliminar
-        ListaConPI<EntradaHash<C, V>> cubeta = localizar(c);
-        // Resolucion de la Busqueda: 
-        // SII esta la Entrada se elimina, tras recuperar su valor
-        if (!cubeta.esFin()) {
-            valor = cubeta.recuperar().valor;
-            cubeta.eliminar();
+        int pos = indiceHash(c);
+        ListaConPI<EntradaHash<C, V>> l = elArray[pos];
+        V valor = null; 
+        // Busqueda de la Entrada de Clave c en la cubeta l
+        l.inicio();
+        while (!l.esFin() && !l.recuperar().clave.equals(c)) { 
+            l.siguiente(); 
+        }
+        // Resolucion de la Busqueda: SII esta en la cubeta     
+        // l, se recupera el valor de la Entrada de Clave c  
+        // y, luego, se elimina de l
+        if (!l.esFin()) {
+            valor = l.recuperar().valor;
+            l.eliminar();
             talla--;
         }
         return valor;
@@ -148,31 +187,39 @@ public class TablaHash<C, V> implements Map<C, V> {
     // AND
     // - TRAS insertar una nueva Entrada en su  
     //   correspondiente cubeta e incrementar la 
-    //   talla de la Tabla, factorCarga() > FACTOR_DE_CARGA
+    //   talla de la Tabla, factorCarga() > FC_ESTANDAR
     public V insertar(C c, V v) {
+        int pos = indiceHash(c);
+        ListaConPI<EntradaHash<C, V>> l = elArray[indiceHash(c)];
         V antiguoValor = null;
-        // Busqueda en cubeta de la Entrada de clave c 
-        ListaConPI<EntradaHash<C, V>> cubeta = localizar(c);
-        // Resolucion de la busqueda: 
-        // si la Entrada (c, v) ya existe se actualiza su valor, y sino se inserta
-        if (cubeta.esFin()) { 
-            // si no esta, insercion efectiva de la Entrada (c, v)
-            cubeta.insertar(new EntradaHash<C, V>(c, v));
+        // Busqueda de la Entrada de Clave c en la cubeta l
+        l.inicio();
+        while (!l.esFin() && !l.recuperar().clave.equals(c)) { 
+            l.siguiente(); 
+        }
+        // Resolucion de la busqueda: si la Entrada (c, v) NO
+        // esta en la Tabla, se inserta al final de la cubeta
+        // l, se incrementa la talla de la Tabla y, en su caso,
+        // se efectua Rehashing; sino, si la Entrada ya esta en 
+        // l, se actualiza su valor.
+        if (l.esFin()) {
+            // Insercion efectiva de la Entrada (c, v)
+            l.insertar(new EntradaHash<C, V>(c, v));
             talla++;
-                       
-            if (factorCarga() > FACTOR_DE_CARGA && REHASHING) { 
+            
+            if (factorCarga() > FC_ESTANDAR && REHASHING) { 
                 numRH++;
                 rehashing(); 
-            }            
+            }
         }
-        else { 
-            // si ya esta, actualizar (el valor de la) Entrada y retornar el antiguo
-            antiguoValor = cubeta.recuperar().valor;
-            cubeta.recuperar().valor = v; 
+        else {
+            // Recuperacion del valor actual de la Entrada de
+            // Clave C, para devolverlo, y actualizacion de 
+            // dicho valor a v
+            antiguoValor = l.recuperar().valor; l.recuperar().valor = v;
         }
         return antiguoValor;
     }
-    
     // Metodo que implementa el Rehashing. Por motivos obvios, NO se 
     // debe re-inicializar el atributo numRH
     // PERO... OJO!! Para tener en cuenta el coste de las operaciones de 
@@ -183,49 +230,18 @@ public class TablaHash<C, V> implements Map<C, V> {
     @SuppressWarnings("unchecked")
     protected final void rehashing() {
         /* COMPLETAR */
-        if(this.factorCarga() > FACTOR_DE_CARGA){
-            ListaConPI<EntradaHash<C, V>>[] aux = elArray;
-            elArray = new LEGListaConPI[siguientePrimo(aux.length * 2)];
-            for(int i = 0; i < elArray.length; i++){
-                elArray[i] = new LEGListaConPI<EntradaHash<C, V>>();
-            }
-            for(int i = 0; i < aux.length; i++){
-                ListaConPI<EntradaHash<C, V>> l = aux[i];
-                for(l.inicio(); !l.esFin(); l.siguiente()){
-                    EntradaHash<C, V> e = l.recuperar();
-                    elArray[indiceHash(e.clave)].insertar(e);
-                }
+        ListaConPI<EntradaHash<C,V>>[] aux = elArray;
+        elArray = new LEGListaConPI[siguientePrimo(elArray.length * 2)];
+        
+        for (int i = 0; i < elArray.length; i++)
+            elArray[i] = new LEGListaConPI<>();
+        
+        for(ListaConPI<EntradaHash<C,V>> lista: aux){
+            for (lista.inicio(); !lista.esFin(); lista.siguiente()){
+                EntradaHash<C,V> elemento = lista.recuperar();
+                elArray[indiceHash(elemento.clave)].insertar(new EntradaHash<>(elemento.clave, elemento.valor));
             }
         }
-    }
-    
-    /** Devuelve una ListaConPI con las talla() claves  
-     *  de una Tabla Hash */
-    public ListaConPI<C> claves() {
-        ListaConPI<C> l = new LEGListaConPI<C>();
-        for (int i = 0; i < elArray.length; i++) 
-            for (elArray[i].inicio(); !elArray[i].esFin(); elArray[i].siguiente()) 
-                 l.insertar( elArray[i].recuperar().clave); 
-        return l;
-    }
-    
-    /** Devuelve el factor de carga (real) de una Tabla Hash,   
-     *  lo que equivale a la longitud media de sus cubetas en  
-     *  una implemetacion Enlazada de la Tabla */
-    public final double factorCarga() { 
-        return (double) talla / elArray.length; 
-    }
-    
-    /** Devuelve un String con las Entradas de una Tabla Hash
-     *  en un formato texto dado (ver toString de EntradaHash)
-     */
-    // RECUERDA: usa la clase StringBuilder por eficiencia
-    public final String toString() {
-        StringBuilder res = new StringBuilder();
-        for (ListaConPI<EntradaHash<C, V>> cubeta : elArray) 
-            for (cubeta.inicio(); !cubeta.esFin(); cubeta.siguiente()) 
-                res.append(cubeta.recuperar() + "\n"); 
-        return res.toString(); 
     }
     
     // Metodos para el analisis de la eficiencia de una 
@@ -235,15 +251,14 @@ public class TablaHash<C, V> implements Map<C, V> {
      *  cubetas de una Tabla Hash Enlazada */
     public final double desviacionTipica() {
         /* COMPLETAR */
-        double suma = 0;
         double media = factorCarga();
-        int l = elArray.length;
+        double suma = 0.0;
+                                                          
+        for (ListaConPI<EntradaHash<C,V>> cub: elArray)
+            suma += (cub.talla() - media) * (cub.talla() - media);
+        return Math.sqrt(suma/elArray.length);
         
-        for(int i = 0; i < l; i++){
-            suma += Math.pow(elArray[i].talla() - media,2);
-        }
         
-        return Math.sqrt(suma / l);
     }
     
     /** Devuelve el coste promedio de localizar
@@ -254,11 +269,10 @@ public class TablaHash<C, V> implements Map<C, V> {
      */
     public final double costeMLocalizar() {
         /* COMPLETAR */
-        double res = 0;
-        for(int i = 0; i < elArray.length; i++){
-            res += (elArray[i].talla() * (elArray[i].talla() - 1)) / 2;
-        }
-        return res / talla;
+        double res =0.0; 
+        for(ListaConPI<EntradaHash<C,V>> cub: elArray)
+            res += (cub.talla() * (cub.talla()+1))/2;
+        return res/talla;
     }
 
     /** Devuelve un String con el histograma de ocupacion 

@@ -47,8 +47,7 @@ public class Termino {
     
     /** Devuelve el valor Hash de un (this) Termino de forma EFICIENTE, i.e.
      *  al aplicar este metodo por PRIMERA vez sobre un Termino de longitud 
-     *  n (this.termino.length()), calcula su valor Hash, o valor de la 
-     *  siguiente funcion polinomial de base baseHashCode, usando la regla de 
+     *  nzse baseHashCode, usando la regla de 
      *  Horner y, por tanto, SIN usar metodo alguno de la clase Math: 
      *  this.valorHash =   this.termino.charAt(0) * this.baseHashCode^(n-1)  
      *                   + this.termino.charAt(1) * this.baseHashCode^(n-2) 
@@ -59,16 +58,21 @@ public class Termino {
     public int hashCode() { 
         int res = this.valorHash;
         if (res != 0) { return res; }
-        int l = this.termino.length();
+        
+        // for(int i = 0; i < termino.length(); i++){
+            // int aux = 1; 
+            // for(int j = 0; j < termino.length()-i-1;j++){
+                // aux *= this.baseHashCode;
+            // }           
+            // res += this.termino.charAt(i)*aux;
+        // }
+        
         // COMPLETAR: calcular el valor de res para this.termino en this.baseHashCode
         // de forma EFICIENTE, i.e. usando la regla de Horner
-        
-        for(int i = 0; i < l; i++){
-            res += this.termino.charAt(i) * this.baseHashCode^(l-i);
-        }
-        
-        /* FIN COMPLETAR */
-        
+        for (int i = 0; i< this.termino.length(); i++){
+            res = this.baseHashCode * res + this.termino.charAt(i);
+        } 
+        /* FIN COMPLETAR */  
         this.valorHash = res;
         return res;
     }
@@ -79,8 +83,8 @@ public class Termino {
      */
     public boolean equals(Object otro) {
         /* COMPLETAR */
-        if(otro instanceof Termino && this.valorHash == ((Termino)otro).valorHash){
-            return this.termino.equals(((Termino) otro).termino);
+        if (otro instanceof Termino && ((Termino)otro).valorHash == this.valorHash){
+            return ((Termino)otro).termino.equals(this.termino);
         }
         return false;
     }

@@ -17,8 +17,8 @@ import java.io.FileNotFoundException;
  * 2.- BUSCAR: recuperar del Indice de la biblioteca la informacion que 
  *     exista sobre una palabra dada (Posting List) en ella.
  * 
- * @author (EDA-QB) 
- * @version (Curso 2021-2022)
+ * @author (EDA-QA) 
+ * @version (Curso 2020-2021)
  */
  
 public class BuscadorDeLaBibl {
@@ -93,7 +93,7 @@ public class BuscadorDeLaBibl {
     /** Crea el Buscador de la BD que forman los libros de listaLibros.
      *  Basicamente, ello supone crear el Indice de la biblioteca 
      *  con, como maximo, maxTerminos. Si no encuentra (el fichero .txt  
-     *  de) un libro Lanza FileNotFoundException para advertirlo.
+     *  de) un libroLanza FileNotFoundException para advertirlo.
      */ 
     public BuscadorDeLaBibl() throws FileNotFoundException { 
         boolean res = true; 
@@ -165,14 +165,14 @@ public class BuscadorDeLaBibl {
      * Devuelve en formato texto (String) el resultado de la busqueda del termino
      * asociado a unaPalabra en el Indice de una BD (frecuencia de aparicion del 
      * termino y, en su caso, el listado que contiene los titulos y lineas de los
-     * libros de la biblioteca en los que aparece, i.e. su Posting List).
+     * libros de la bibiblioteca en los que aparece, i.e. su Posting List).
      */
     public String buscar(String unaPalabra) { 
         String res = "";
         Termino clave = new Termino(unaPalabra.toLowerCase());
         ListaConPI<BuscadorDeLaBibl.Posting> valor = index.recuperar(clave);
         if (valor == null) {
-            res += "La palabra \"" + unaPalabra + "\" no aparece en ningun libro de esta biblioteca";
+            res += "La palabra \"" + unaPalabra + "\" no aparece en ningun libro de esta bibilioteca";
         }
         else {
             res += "Encontradas " + valor.talla() + " apariciones de la palabra \"" + unaPalabra 
@@ -196,59 +196,24 @@ public class BuscadorDeLaBibl {
     }
     
     /** Devuelve una ListaConPI con aquellos terminos del Indice de una BD que 
-     *  aparecen solo una vez en sus libros, i.e. los llamados "hapax legomena" 
-     *  de la BD, o null si no existe ninguno.
+     *  solo aparecen solo una vez en sus libros, i.e. los llamados "hapax 
+     *  legomena" de la BD, o null si no existe ninguno.
      */
     public ListaConPI<Termino> hapax() {
         /* COMPLETAR */
         ListaConPI<Termino> res = new LEGListaConPI();
-        ListaConPI<Termino> c = index.claves();
-        ListaConPI<BuscadorDeLaBibl.Posting> valor;
+        ListaConPI<Termino> c = index.claves(); 
         
-        // for(c.inicio(); !c.esFin(); c.siguiente()){
-            // Termino clave = c.recuperar();
-            // valor = index.recuperar(clave);
-            // if(valor.talla() == 1){
-                // res.insertar(clave);
-            // }
-        // }
-        c.inicio();
-        while(!c.esFin()){
+        ListaConPI<BuscadorDeLaBibl.Posting> valor;
+        for(c.inicio(); !c.esFin(); c.siguiente()){
             Termino clave = c.recuperar();
             valor = index.recuperar(clave);
-            if(valor.talla() == 1){
+            if (valor.talla() == 1){
                 res.insertar(clave);
-            }
-            c.siguiente();
+            } 
         }
-        if(res.talla() == 0) return null;
-        return res;
-    }
-    
-    public ListaConPI<Termino> comienzanPor(String prefijo, String libro){
-        if(!esTermino(prefijo)){return null;}
-        ListaConPI<Termino> res = new LEGListaConPI<Termino>();
-        ListaConPI<Termino> c = index.claves();
-        ListaConPI<BuscadorDeLaBibl.Posting> v = new LEGListaConPI();
         
-        c.inicio();
-        while(!c.esFin()){
-            Termino clave = c.recuperar();
-            if(clave.equals(libro)){
-                v = index.recuperar(clave);
-                break;
-            }
-            c.siguiente();
-        }
-        if(v.talla() == 0) return null;
-        v.inicio();
-        while(!v.esFin()){
-            String cad = v.recuperar().toString();
-            if(cad.startsWith(prefijo)){
-                //res += v.recuperar();
-            }
-            v.siguiente();
-        }
+        if (res.talla() == 0) return null;
         return res;
     }
 }    

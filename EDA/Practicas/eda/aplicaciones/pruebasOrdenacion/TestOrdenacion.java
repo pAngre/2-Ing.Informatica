@@ -3,6 +3,7 @@ package aplicaciones.pruebasOrdenacion;
 import librerias.util.Ordenacion;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.concurrent.ThreadLocalRandom;
 
 /** 
  *  La clase TestOrdenacion permite probar y temporizar los  
@@ -23,19 +24,24 @@ public class TestOrdenacion {
     public static boolean comprobar() {
         Integer[] a1 = crearAleatorioInteger(100000);
         Integer[] a2 = Arrays.copyOf(a1, a1.length);
+
         // A completar por el alumno: 
         // comprobar que mergeSort2 ordena correctamente,
         // usando el metodo sonIguales de 
         // la clase Ordenacion para comparar su resultado  
         // con el de quickSort 
+        
         // Ordenacion por Quick Sort de a1:
+        //COMPLETAR
         Ordenacion.quickSort(a1);
 
-        // Ordenacion por Merge Sort (version 2) de a2:
-        Ordenacion.mergeSort1(a2);
-
+        // Ordenacion por Merge Sort (version 2) de a2:   
+        //COMPLETAR        
+        Ordenacion.mergeSort2(a2);
         // Son iguales a1 (quickSort) y a2 (mergeSort2)?
-        return Ordenacion.sonIguales(a1, a2);
+        // COMPLETAR return 
+        
+        return Ordenacion.sonIguales(a2,a1);
     }
 
     /**
@@ -70,11 +76,12 @@ public class TestOrdenacion {
                 t2 = System.nanoTime();
                 tacum1 += t2 - t1;    
                 
+                //  A completar:  
+                //  Temporizacion de mergeSort2
                 t1 = System.nanoTime();
                 Ordenacion.mergeSort2(aux2);
                 t2 = System.nanoTime();
-                tacum2 += t2 - t1; 
-                
+                tacum2 += t2 - t1;
                 
                 t1 = System.nanoTime();
                 Ordenacion.quickSort(aux3);
@@ -138,10 +145,12 @@ public class TestOrdenacion {
                 t2 = System.nanoTime();
                 tacum1 += t2 - t1;    
                 
+                // A completar: 
+                // Temporizacion de mergeSort2
                 t1 = System.nanoTime();
                 Ordenacion.mergeSort2(aux2);
                 t2 = System.nanoTime();
-                tacum1 += t2 - t1;                              
+                tacum2 += t2 - t1;
                                                                 
                 t1 = System.nanoTime();
                 Ordenacion.quickSort(aux3);
@@ -167,9 +176,10 @@ public class TestOrdenacion {
      * @return String[]
      */    
     public static String[] crearAleatorioString(int talla, int n) {
-        String[] res = new String [talla];
+        /*MODIFICAR*/
+        String[] res = new String[talla];
         GeneradorDeString g = new GeneradorDeString(n);
-        for(int i = 0; i < res.length; i++){
+        for(int i = 0; i < talla; i++){
             res[i] = g.generar();
         }
         return res;
