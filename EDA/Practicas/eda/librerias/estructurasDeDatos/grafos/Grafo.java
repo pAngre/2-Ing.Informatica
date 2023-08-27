@@ -221,4 +221,39 @@ public abstract class Grafo {
         if(cardinal == numVertices() - 1) return aristas;
         return null;
     }
+    
+    public int fuenteEnMST() {
+        Arista[] mst = kruskal();
+        if (mst == null) { 
+            return -2;
+        }
+
+        int numVertices = numVertices();
+        boolean[] visitados = new boolean[numVertices];
+        int[] grados = new int[numVertices];
+
+        for (Arista arista : mst) {
+            int origen = arista.getOrigen();
+            int destino = arista.getDestino();
+            grados[origen]++;
+            grados[destino]++;
+            visitados[origen] = true;
+            visitados[destino] = true;
+        }
+
+        for (int i = 0; i < numVertices; i++) {
+            if (!visitados[i]) {
+                return -1;
+            }
+        }
+
+        for (int i = 0; i < numVertices; i++) {
+            if (grados[i] == numVertices - 1) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
 }
